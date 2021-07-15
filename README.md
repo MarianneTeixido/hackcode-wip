@@ -27,11 +27,29 @@ La propuesta está orientada a personas identificadas como mujeres o personas no
 
 Sesión I
 
-- Teórico
-Música, programación y tecnofeminismo en el live coding.
-a. Mujeres y disidencias en la historia de la música electrónica.
-b. Texto, sonido e imagen. Código como posibilidad narrativa.
+- Presentación  
+Música, programación y ciberfeminismo en el live coding. 
+- Live coding 
+	- [Toplap](https://toplap.org/about/)
+	- [Algorave](https://algorave.com/)
+	- [Wikipedia](https://es.wikipedia.org/wiki/Live_coding)
+- Ciberfeminismo
+	- [Index](https://cyberfeminismindex.com/)
+	- [Sisters with transistors](https://sisterswithtransistors.com/ALL)
+	- [Mujeres programadoras](https://www.fullstackacademy.com/blog/remarkable-women-programmers)
+	- [Feminismo y software libre](https://www.mujeresenred.net/software_libre/indexsl.html)
+	- [Manifiesto xenofeminista](https://laboriacuboniks.net/manifesto/xenofeminism-a-politics-for-alienation/)
+	- [MariaLab](https://www.marialab.org/)
+	
+- Texto, sonido e imagen. Código como posibilidad narrativa.
 c. Ciber-hackfeminismo como experimentación sonora.
 - Práctico
-Instalación de SuperCollider y Tidal
+Instalación
+	- [SuperCollider](https://supercollider.github.io/download) 
+	- [Tidal](https://tidalcycles.org/docs/getting-started/linux_install)
+
+
+
+
+
 
