@@ -111,5 +111,125 @@ d1 $ sound "kurt:4 kurt:4" # shape "0 0.78" # gain "0.7"
 d1 silence
 
 
+-- * Efectos
+
+-- http://tidalcycles.org/docs/reference/audio_effects
+
+-- delay / delaytime / delayfeedback
+-- cutoff / resonance
+-- room / size
+
+-- * Subsecuencias
+
+-- -- Introduce una subsecuencia en un ciclo con corchetes:
+
+
+d1 $ sound "bd [bd cp] bd bd"
+
+-- Esto puede hacer que las marcas de tiempo sean flexibles:
+
+d1 $ sound "[bd bd sn:5] [bd sn:3]"
+
+-- Puedes poner subsecuencias dentro de subsecuencias:
+
+d1 $ sound "[[bd bd] bd sn:5] [bd sn:3]"
+
+-- Continuamos con eso..
+d1 $ sound "[[bd [bd bd bd bd]] bd sn:5] [bd sn:3]"
+
+
+-- * Secuencias polimétricas / polirrítmicas
+--Reproduce dos subsecuencias a la vez separándolas con una coma:
+
+d1 $ sound "[voodoo voodoo:3, arpy arpy:4 arpy:2]"
+
+-- compara como [,] y {,} funcionan:
+
+d1 $ sound "[voodoo voodoo:3, arpy arpy:4 arpy:2]"
+
+d1 $ sound "{voodoo voodoo:3, arpy arpy:4 arpy:2}"
+
+d1 $ sound "[drum bd hh bd, can can:2 can:3 can:4 can:2]"
+
+d1 $ sound "{drum bd hh bd, can can:2 can:3 can:4 can:2}"
+
+d1 $ sound "[bd sn, can:2 can:3 can:1, arpy arpy:1 arpy:2 arpy:3 arpy:5]"
+
+d1 $ sound "{bd sn, can:2 can:3 can:1, arpy arpy:1 arpy:2 arpy:3 arpy:5}"
+
+-- * Qué es un patrón?
+
+-- Pensemos en diferentes tipos de patrones y cómo Tidal puede
+-- representarlos
+
+-- ** Ciclo / repetitivo
+
+d1 $ n "0 1 2 3" # sound "arpy"
+
+d1 $ n (run 4) # sound "arpy"
+
+-- ** simétrico
+
+-- Compara lo siguiente:
+
+d1 $ slow 2 $ n "0 1 2 3 3 2 1 0" # sound "arpy"
+
+d1 $ palindrome $ n (run 4) # sound "arpy"
+
+-- ** auto semejanza
+
+d1 $ slow 4 $ n "[0 1 2 3] [0 1 2 3]*2 [0 1 2 3]*4 [0 1 2 3]*8" # sound "arpy"
+
+d1 $ slowspread (density) [1,2,4,8] $ n "0 1 2 3" # sound "arpy"
+
+-- ** interferencia
+
+
+-- Hay muchas formas de hacer que los patrones interfieran entre sí, p. Ej.
+-- polirritmos:
+
+d1 $ sound "{arpy arpy:2 arpy:4, arpy:5 arpy:0}"
+
+-- Un cannon
+d1 $ jux rev $ weave 16 (n (run 8) # sound "arpy")
+  [vowel "a e i",
+   vowel "e i*2 o u",
+   speed "1 1.5 ~ 1",
+   speed "2 1 0.5"
+  ]
+
+-- Transformando secuencias
+
+-- slow
+
+d1 $ sound "arpy arpy:1 arpy:2 arpy:3"
+
+d1 $ slow 2 $ sound "arpy arpy:1 arpy:2 arpy:3"
+
+-- density
+d1 $ density 2 $ sound "arpy arpy:1 arpy:2 arpy:3"
+
+-- density 2 es la misma que slow 0.5 ..
+d1 $ slow 0.5 $ sound "arpy arpy:1 arpy:2 arpy:3"
+d1 silence
+
+-- Revertir
+
+d1 $ rev $ sound "arpy arpy:1 arpy:2 arpy:3"
+
+-- iterar
+
+d1 $ iter 4 $ sound "arpy arpy:1 arpy:2 arpy:3"
+
+-- every
+-- cada cuarto ciclo, haz el doble de densidad:
+
+d1 $ every 4 (density 2) $ sound "arpy arpy:1 arpy:2 arpy:3"
+
+-- Más de una transformación es posible
+d1 $ jux (rev . (slow 1.5)) $ sound "arpy arpy:1 arpy:2 arpy:3"
+
+d1 silence
+
 Para más ejemplos revisen:
   http://twitter.com/tidalbot/
