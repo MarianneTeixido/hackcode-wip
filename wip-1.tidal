@@ -1,0 +1,115 @@
+
+--  Introducción a tidalcycles
+--  Traducción de taller impartido por
+--  Lucy Cheesman, Richard Eason, Alex McLean inspirado en trabajo de
+--  Alexandra Cardenas
+-- CC BY-SA 4.0 - https://creativecommons.org/licenses/by-sa/4.0/
+
+-- * Sonar con tidal
+-- Evalúa la siguiente linea
+d1 $ sound "arpy"
+
+-- * Para detener el sonido lo reemplazamos por un silencio
+
+d1 silence
+
+-- * Elije un sonido diferente del mismo conjunto, con ':'
+
+d1 $ sound "arpy:1"
+-- * Explora más sonidos:
+
+-- flick sid can metal future gabba sn mouth co gretsch mt arp h cp cr
+-- newnotes bass hc tabla bass0 hh bass1 bass2 oc bass3 ho odx
+-- diphone2 house off ht tink perc bd industrial pluck trump
+-- printshort jazz voodoo birds3 procshort blip drum jvbass psr wobble
+-- drumtraks koy rave bottle kurt latibro rm sax lighter lt arpy feel
+-- less stab ul
+
+-- * ¿De dónde provienen estos sonidos? ¿Cómo agrego más?
+
+-- En los menús de SuperCollider (no atom):
+-- Archivo> Abrir directorio de soporte al usuario> quarks descargados> Dirt-Samples
+
+-- * Hacer una secuencia
+
+d1 $ sound "bd hh sn hh"
+
+-- * Agrega un silencio / descanso en una secuencia con '~'
+
+d1 $ sound "bd ~ sn:3 bd sn:5 ~ bd:2 sn:2"
+
+-- * Cuanto más larga es la secuencia, más rápido se ejecuta
+
+d1 $ sound "bd bd hh bd sn bd hh bd"
+
+-- * Juega más de una secuencia a la vez con d1 ... d9
+
+d2 $ sound "sn [sn:2 sn] bd sn"
+
+-- * Cambia los ciclos globales por segundo (equivalente a BPM)
+
+cps 0.6
+
+-- * Pausar todo (recuerda poner números negativos entre paréntesis)
+
+cps (-1)
+
+-- * Comenzar de nuevo
+
+cps 0.6
+
+-- * Hush hace que todo se silencie
+
+hush
+
+-- * Efectos
+
+-- ** vowel
+
+d1 $ sound "drum drum drum drum" # vowel "a o"
+
+-- La 'estructura' viene de la izquierda - intenta intercambiar los parámetros
+
+d1 $ vowel "a o ~ i" # sound "drum"
+
+-- ** gain
+
+d1 $ sound "bd hh sn:1 hh sn:1 hh" # gain "1 0.7 0.5"
+
+-- 'sine' es un patrón continuo que sigue una curva sinusoidal de 0 a 1 y viceversa
+
+d1 $ sound "bd*32" # gain sine
+
+-- ** 'speed' sube
+-- la velocidad de reproducción, p. ej. 2 = una octava arriba
+d1 $ speed "1 2 4" # sound "jungbass:6"
+
+-- up - semitonos, p. ej. 12 = una octava arriba
+d1 $ up "0 ~ 12 24" # sound "jungbass:6"
+
+d1 $ sound "numbers:1 numbers:2 numbers:3 numbers:4"
+
+-- Usaremos este para explicar el paneo
+
+d1 $ sound "numbers:1 numbers:2 numbers:3 numbers:4" # speed "1 1.5 2 0.5"
+
+-- ** pan - 0 = izquierda, 0.5 = en medio, 1 = derecha
+d1 $ sound "numbers:1 numbers:2 numbers:3 numbers:4" # pan "0 0.5 1"
+
+-- We can use * to repeat a step, e.g. this plays 16 kick drums per cycle,
+-- panned from left to right following a sine curve, pitched right up:
+
+-- Podemos usar * para repetir un paso, p. ej. esto toca 16 kick drums por ciclo,
+-- Panorámica de izquierda a derecha siguiendo una curva sinusoidal, inclinada hacia arriba:
+
+d1 $ sound "drum*16" # pan sine # speed "4"
+
+-- ** shape - - distorsión (cuidado - también hace que el sonido sea mucho más fuerte)
+
+d1 $ sound "kurt:4 kurt:4" # shape "0 0.78" # gain "0.7"
+
+d1 silence
+
+
+Para más ejemplos revisen:
+  http://twitter.com/tidalbot/

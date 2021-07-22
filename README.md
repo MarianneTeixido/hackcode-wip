@@ -52,7 +52,7 @@ Instalación
 #### Sesión II
 
 - Introducción a SuperCollider
-	- [Código SC](https://github.com/MarianneTeixido/hackcode-wip/blob/main/sesion-2.scd)
+	- [Código SC](https://github.com/MarianneTeixido/hackcode-wip/blob/main/wip-1.scd)
 - Debuggeo instalación Tidal
 - Introducción a TidalCycles 
 	
@@ -87,8 +87,15 @@ Al guardar el archivo SuperCollider siempre arrancará SuperDirt tan pronto como
 **NOTA:** Existen varias formas de iniciar SuperDirt que nos permiten usar librerías de SC o hacer sonido multicanal, pero por el momento sólo usaremos el script anterior. 
 
 
+Tidal Cycles no usa BPM (latidos por minuto) sino una medida específica llamada CPS: ciclos por segundo. Para Tidal, el tiempo es cíclico y no lineal. Significa que cuando termina un ciclo, seguirá uno nuevo. El tiempo se cuenta en decrementos cada vez más pequeños de ciclos por segundo (por ejemplo, 1/3 de un ciclo). 
 
+![ciclos](https://github.com/MarianneTeixido/hackcode-wip/blob/main/img/ciclos.png)  
 
+Tidal puede retroceder o avanzar rápidamente en el tiempo porque en realidad puedes predecir lo que sucederá en x ciclos o lo que sucedió hace x ciclos
+
+Acá te dejo el código para comenzar a hacer sonido!
+
+- [Codigo Tidal]()
 
 
 
