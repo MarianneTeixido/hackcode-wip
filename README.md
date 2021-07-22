@@ -20,12 +20,12 @@ La propuesta está orientada a personas identificadas como mujeres o personas no
 
 ### Requerimientos 
 
-    Computadora personal (cualquier sistema operativo). 
-    Audífonos. 
+- Computadora personal (cualquier sistema operativo). 
+- Audífonos. 
 
 ### Programa 
 
-Sesión I
+#### Sesión I
 
 - Presentación  
 Música, programación y ciberfeminismo en el live coding. 
@@ -49,7 +49,16 @@ Instalación
 	- [Tidal](https://tidalcycles.org/docs/getting-started/linux_install)
 
 
+#### Sesión II
 
+- Introducción a SuperCollider
+	- [Código SC]()
+- Debuggeo instalación Tidal
+- Introducción a TidalCycles 
+	- [Código Tidal]()
+
+
+	
 
 
 
