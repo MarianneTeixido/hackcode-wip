@@ -52,13 +52,44 @@ Instalación
 #### Sesión II
 
 - Introducción a SuperCollider
-	- [Código SC]()
+	- [Código SC](https://github.com/MarianneTeixido/hackcode-wip/blob/main/sesion-2.scd)
 - Debuggeo instalación Tidal
 - Introducción a TidalCycles 
-	- [Código Tidal]()
-
-
 	
+##### Tidal 
+	
+La siguiente información también la puedes consultar [acá](https://tidalcycles.org/docs/getting-started/tidal_start/)
+
+Tidal Cycles no es un gran software monolítico. Sino que es una interconexión entre varios componentes:  
+- Una biblioteca de patrones
+         - (1) Tu editor de texto
+         - (2) El intérprete (Haskell)
+- Un motor de audio
+        - (1) SuperDirt para recibir mensajes y convertirlos en sonido.
+        - (2) SuperCollider, generador de sonido. 
+
+![tidal](https://github.com/MarianneTeixido/hackcode-wip/blob/main/img/tidal.png)  
+
+Para iniciar Tidal:  
+- Iniciar SuperCollider y SuperDirt. En el IDE de SC evalúa el siguiente comando:  
+     
+`SuperDirt.start`  
+
+
+Evalúa presionando Ctrl / Cmd + Enter. Deberías ver en la postwindow el siguiente mensaje
+`SuperDirt: listening to Tidal on port 57120`
+
+- En Atom (o el editor de tu preferencia), crea un nuevo archivo y guárdalo con la extención .tidal.   
+Ejemplo: wip.tidal
+
+Al guardar el archivo SuperCollider siempre arrancará SuperDirt tan pronto como se inicie el programa y estamos listxs para sonar con Tidal. 
+
+**NOTA:** Existen varias formas de iniciar SuperDirt que nos permiten usar librerías de SC o hacer sonido multicanal, pero por el momento sólo usaremos el script anterior. 
+
+
+
+
+
 
 
 
