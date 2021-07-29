@@ -59,8 +59,11 @@ Instalación
 #### Sesión III
 
 - Concluir la instalación de Tidal
-- SynthDef's [Código SuperCollider]()
-- Conectar SynthDef con Tidal [Código Tidal]()
+- SynthDef's 
+	- [Envolventes](https://github.com/MarianneTeixido/hackcode-wip/blob/main/envolventes.scd)
+	- [Variables](https://github.com/MarianneTeixido/hackcode-wip/blob/main/variables.scd)
+	- [Librería de SynthDef](https://github.com/MarianneTeixido/hackcode-wip/blob/main/librer%C3%ADaSynths.scd)
+- Conectar SynthDef con Tidal [Código Tidal](https://github.com/MarianneTeixido/hackcode-wip/blob/main/cqde.tidal)
 - Armar nuestro set
 	- Concepto
 	- Síntesis y sinido
@@ -72,6 +75,8 @@ Instalación
 - Dirty Hacks
 	- Efectos globales
 	- JitLib Hacks
+
+#Pendienes
 
 
 	

@@ -1,0 +1,15 @@
+d1
+  $ cat[
+    note "c ds g bf", note "c ds g bf",
+    note "c f af c6", note "c f af c6"]
+  # s "cqde"
+
+hush
+
+
+  d1
+  $ superimpose (fast 2 . (|- note "12 0 24 -12 0"))
+  $ cat[
+    note "c ds g bf", note "c ds g bf",
+    note "c f af c6", note "c f af c6"]
+  # s "praxis" # pan (slow 2 $ range "-1" 1 $ sine)
