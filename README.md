@@ -71,10 +71,18 @@ Instalación
 
 # Sesión IV
 
+- Repaso SynthDef
+- Muestras con PlayBuf
+- Rutinas  
+
+Código SC ->[acá](https://github.com/MarianneTeixido/hackcode-wip/blob/main/syntes-muestras-rutinas.scd)<- 
+
+# Sesión V
 - NodeProxy
 - Dirty Hacks
 	- Efectos globales
 	- JitLib Hacks
+	
 
 #Pendienes
 
