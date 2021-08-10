@@ -12,42 +12,46 @@ SynthDef(\ejemplo, { arg freq = 440, pan = 0, vol = 0;
 }).send(s);
 )
 
-a = Synth(\ejemplo, [\freq, 500, \vol, 1, \pan, 1]);
+a = Synth(\ejemplo, [\freq, 500, \vol, 1, \pan, 0]);
 a.set(\freq, 200);
 a.free;
 
+s.scro
+
 
 //Ejemplo 2
-
+(
 SynthDef ("tonos_diferentes",{
 	arg freq = 440;
 	var onda;
 	onda = SinOsc.ar(freq)*0.1;
-	Out.ar(0, out)
-}).play
+	Out.ar([0,1], onda)
+}).add
+)
+~morado = Synth("tonos_diferentes", ["freq", 64.midicps]);
+~taza = Synth("tonos_diferentes", [\freq, 67.midicps]);
+~red = Synth("tonos_diferentes", ["freq", 72.midicps]);
 
-a = Synth("tonos_diferentes", ["freq", 64.midicps]);
-b = Synth("tonos_diferentes", [\freq, 67.midicps]);
-c = Synth("tonos_diferentes", ["freq", 72.midicps]);
+~morado.set("freq", 60.midicps);
+~taza.set("freq", 66.midicps);
+~red.set("freq", 71.midicps);
 
-a.set("freq", 60.midicps);
-c.set("freq", 71.midicps);
-
-a.free;
-b.free;
-c.free;
+~morado.free;
+~taza.free;
+~red.free;
 
 //Ejemplo 3
 
 (
 SynthDef ("tono2",{
 	arg freq = 440;
-	var onda, mod;
+	var onda, mod, pulse;
+	pulse = Pulse.ar(freq*0.999);
 	mod = SinOsc.ar(freq*1.1) *0.1;
 	onda = SinOsc.ar(freq)*0.1;
-	Out.ar(0, onda + mod)
+	Out.ar([0,1], onda + mod*pulse)
 }).add
-)
+
 
 //Mini ejercicio:
 // Crea diferentes instancias del anterior SynthDef usando más de dos varibles
@@ -71,25 +75,25 @@ SynthDef ("tono2",{
 
 
 
-
 s.quit
 
 
-SuperDirt.start //Conectar con tidal
 
 
-// A continuación trabajaremos con SynthDef y muestras.
-//En la siguiente lineas carga la ruta de los sonidos que quieres usar.
+s.boot
 
-a = Buffer.read(s, "/home/unyxt/muestras/808/kick__0_.wav"); // Cargar el buffer, lo guardamos en b. Importante: liberarlo más adelante
-b = Buffer.read(s, "/home/unyxt/muestras/808/clap__0_.wav"); // Cargar el buffer, lo guardamos en b. Importante: liberarlo más adelante
+// Samples
+
+a = Buffer.read(s, "/home/unyxt/muestras/808/kick__0_.wav");
+b = Buffer.read(s, "/home/unyxt/muestras/808/clap__0_.wav");
 c = Buffer.read(s, "/home/unyxt/muestras/ua/08monk.wav");
+
+t = Buffer.read(s,"/home/unyxt/Music/Audio-Database/abstract90/Abstract/Abstract90-04.wav");
 
 a.bufnum;
 b.bufnum;
-a.free
-b.free
-c.free
+a.free;
+b.free;
 
 /*
 Explicacioń PlayBuf
@@ -104,51 +108,96 @@ PlayBuf.ar(1, //número de canales del reproductor, tiene que corresponder con l
 
 */
 
+s.scope
+
 (
-SynthDef(\playKick, { |bufnum, envbuf|
+SynthDef(\playKick, { arg bufnum;
 	var buf;
 	buf = PlayBuf.ar(1, bufnum, BufRateScale.kr(bufnum)*0.5, 1, 0, 0);
 	Out.ar([0,1], buf)
-}).add;
+}).add
 )
 
 d = Synth(\playKick, [\bufnum, a]);
 d.free
 
+
 (
-SynthDef(\playClap, { |bufnum, envbuf|
+SynthDef(\playClap, { |bufnum|
 	var buf;
 	buf = PlayBuf.ar(1, bufnum, BufRateScale.kr(bufnum), 1, 0, 0);
 	Out.ar([0, 1], buf)
 }).add;
 )
 
-d = Synth(\playKick, [\bufnum, b]);
+f = Synth(\playClap, [\bufnum, t]);
 
+
+Warp1.ar(1,
+	bufnum,
+	pointer,
+	pitch,
+	0.1,
+	envbuf,
+	8,
+	0.1,
+	2);
 
 (
-SynthDef(\warp, { |bufnum, envbuf|
+SynthDef(\arena, { |bufnum,envbuf, overLaps|
 
 	var  warp, pointer, pitch;
 
 	pointer = MouseX.kr(0, 1);
     pitch = MouseY.kr(0.5, 2);
 
-    warp = Warp1.ar(1, bufnum, pointer, pitch, 0.1, envbuf, 8, 0.1, 2);
-
-
-
+    warp = Warp1.ar(2, bufnum, pointer, pitch, 0.1, envbuf, overLaps, 0.1, 2);
 	Out.ar([0, 1], warp)
 }).add;
 
 )
 
-d = Synth(\warp, [\bufnum, c, \envbuf, -1])
-d.free
+~grano = Synth(\arena, ["bufnum", t, "envbuf", -1, "overLaps", 8])
+~grano.set("overLaps", 0.3)
+~grano.free
 
 
 // Rutinas
 // Abajo verás un ejemplo de una rutina.
+
+
+
+(
+r = Routine{
+	3.do({
+	2.do({
+	x = {SinOsc.ar(60.midicps,0,0.5)}.play;
+	"ondas de sabor y sonido".postln;
+	3.wait;
+	x.release;
+	});
+	1.wait;
+
+	y = {Pulse.ar(200,0.2,0.3)}.play;
+	"caminos y vertientes".postln;
+	1.wait;
+	y.release;
+	z = {PinkNoise.ar(0.1)}.play;
+	"el ruido es todo lo que no es".postln;
+	4.wait;
+	z.release;
+
+	});
+}
+)
+
+r.play
+r.free
+
+
+
+
+
 
 (
 r = Routine{
@@ -193,12 +242,22 @@ r = Routine {
 			Synth(\playClap, [\bufnum, b]);
 			[0.125, 0.25, 0.5].choose.wait;
 		});
+
+		0.25.wait;
+
+		2.do({
+			"prueba".postln;
+			g = Synth(\arena, [\bufnum, t, "envbuf", -1, "overLaps", 8]);
+			g.release;
+
+		});
 	})
 
 }.play;
 )
 
 
+~grano = Synth(\arena, ["bufnum", t, "envbuf", -1, "overLaps", 8])
 
 
 

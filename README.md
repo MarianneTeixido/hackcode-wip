@@ -75,17 +75,22 @@ Instalación
 - Muestras con PlayBuf
 - Rutinas  
 
-Código SC ->[acá](https://github.com/MarianneTeixido/hackcode-wip/blob/main/syntes-muestras-rutinas.scd)<- 
+[Código acá](https://github.com/MarianneTeixido/hackcode-wip/blob/main/syntes-muestras-rutinas.scd)<- 
 
 # Sesión V
 - NodeProxy
+	-  Ndef
+	- ProxySpace
 - Dirty Hacks
 	- Efectos globales
 	- JitLib Hacks
 	
+[Código acá](https://github.com/MarianneTeixido/hackcode-wip/blob/main/node-proxy.scd)<- 
 
 #Pendienes
 
+- Sesión de live coding ¿from scratch?
+- Repositorio sonoro
 
 	
 
